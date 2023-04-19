@@ -6,12 +6,21 @@
 </head>
 <body>
 <h1>My Library</h1>
-    <ul>
+        <!-- When the DB is nothing inside -->
         {% if books == []: %}
         <p>Library is empty</p>
         {% endif %}
+    <ul>
+        <!-- else loop though the DB and show on the page -->
         {% for book in books %}
-        <li>{{book.title}} - {{book.author}} - {{book.rating}}/10</li>
+        <li>
+            <!-- Use the list tag to show the books in DB -->
+            {{book.title}} - {{book.author}} - {{book.rating}}/10
+            <!-- Go to rating page -->
+            <a href="{{ url_for('edit', id=book.id) }}">Edit Rating</a>
+            <!-- Go to delete page -->
+            <a href="{{ url_for('delete', id=book.id) }}">Delete</a>
+        </li>
         {% endfor %}
     </ul>
     
